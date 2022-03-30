@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body, html {
+    margin: 0;
+}
+nav {
+    width: 100%;
+    position: sticky;
+    top:0;
+    background-color: black;
+}
+.nav-links ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.nav-links li a, .nav-links ul li{
+     padding: 15px 10px;
+     color: white;
+     text-decoration: none;
+
+}
+.value {
+    width: 50px;
+    margin: 10px;
+}
+.invalid-value {
+    background-color: #ffcccb;
+}
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+.button-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.values-box{
+    background-color: bisque;
+    margin:20px;
+    padding: 15px;
+}
+.result {
+    padding: 10px;
+    width: 200px;
+    margin: 0 auto;
+}
