@@ -1,26 +1,34 @@
 function getValues(){
-    const rows = document.querySelectorAll('.row');
-    const arr = [];
-    for(let i = 0; i < rows.length; ++i){
-        arr.push(Array.from(rows[i].children).map(x => parseFloat(x.value)));
+    const values = document.querySelectorAll('.value');
+    const arr = Array.from(values).map(x => parseFloat(x.value));
+    const size = Math.sqrt(arr.length);
+    for( var chunks = [], i = 0; i < arr.length; i+=size ){
+        chunks.push(arr.slice(i, i + size));
     }
-    console.log(arr);
-    return arr;
+    console.log(chunks);
+    return chunks;
 }
 function handleUserActivity(){
     arr = getValues();
 
-    const resultDiv = document.querySelector('.result');
     if(checkData(arr)){
-        resultDiv.innerHTML = "Please enter correct data!";
+        printMessage("Please enter correct data!");
     }
     else{
         const det = computeDet(arr);
-        resultDiv.textContent = "Result is: "+ det.toPrecision(3);
+        printMessage("Result is: "+ det.toPrecision(3));
     }
 }
+function printMessage(str){
+
+    let txtBox = document.querySelector('.result');
+    txtBox.classList.add("result-pre-animation");
+    txtBox.textContent = str;
+    setTimeout(() => txtBox.classList.remove("result-pre-animation"),700)
+    
+}
 function clearData(){
-    document.querySelector('.result').innerHTML = "";
+    printMessage("Insert data");
     const values = document.querySelectorAll('.value');
     for( let [indx,j] of values.entries()){
             j.value = "";
@@ -45,6 +53,7 @@ function checkData(arr){
     else return false;
 }
 function computeDet (arr){
+    console.log(arr.length);
     let det = arr[0][0];
     for(let s = 0; s < arr.length-1; ++s){
         for(let i = s + 1; i < arr.length; ++i){
@@ -56,5 +65,37 @@ function computeDet (arr){
     }
     return det
 }
+function increaseSize(){
+    let grid = document.getElementsByClassName("grid-container")[0];
+    const size = parseInt(grid.dataset.num) + 1;
+    if(size > 5)return;
+    grid.dataset.num = size;
+    loadGrid(grid, size);
+    
+}
+function decreaseSize(){
+    let grid = document.getElementsByClassName("grid-container")[0];
+    const size = parseInt(grid.dataset.num) - 1;
+    if(size < 2)return;
+    grid.dataset.num = size;
+    loadGrid(grid, size);
+}
+function loadGrid(grid, size){
+    let gridHolder = document.querySelector('.grid-holder');
+    let input = document.createElement("input");
+    input.type = "text";
+    input.classList.add("value");
 
+    gridHolder.classList.toggle("grid-pre-animation");
+    grid.style.gridTemplateColumns = "repeat("+size+",50px)";
+    grid.style.gridTemplateRows = "repeat("+size+",30px)";
+    grid.textContent="";
+
+    for(let i = 0; i < size*size; ++i){
+        grid.appendChild(input.cloneNode(1));
+    }
+    //setTimeout(()=>{return;},700)
+    setTimeout(() => gridHolder.classList.toggle("grid-pre-animation"),500);
+    //gridHolder.classList.remove("grid-pre-animation");
+}
 
