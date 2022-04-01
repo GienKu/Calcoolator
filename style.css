@@ -144,6 +144,8 @@ nav {
     display: none;
     justify-content: center;
     align-items: center;
+    justify-items: flex-start;
+    flex-wrap: wrap;
     background-color: rgba(255,255,255,0.2);
     opacity: 0;
     color:#636aca;
@@ -187,12 +189,18 @@ nav {
 }
 .menu-layer ul {
     list-style: none;
+    padding: 10px 0;
+
 }
 .menu-layer ul li {
     font-size: 1.2em;
     font-weight: 500;
     padding: 5px;
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+.menu-layer ul li:hover {
+    background-color: rgba(255,255,255,0.2)
 }
 .menu-layer span {
     font-weight: 700;
@@ -209,6 +217,7 @@ nav {
     justify-content: space-evenly;
     cursor: pointer;
     z-index: 5;
+    transition: all 0.5s ease;
 }
 .hamburger-menu .bar {
     width: 100%;
@@ -419,6 +428,20 @@ nav {
         transform: translate(-200px, -50vh) scale(10);
     }
 }
+@media screen and (max-width:768px) {
+    .menu-layer ul {
+        padding: 10px 0px 0px 0px;
+        max-width: 280px;
+    }
+    .hamburger-menu-active {
+        transform: translateY(-100px);
+    }
+}
+@media screen and (max-width:584px) {
+    .menu-layer {
+        align-items: flex-end;
+    }
+}
 @media screen and (max-width:480px) {
     .logo-letter {
         font-size: 2em;
@@ -428,6 +451,13 @@ nav {
     }
     .nav-desc {
         font-size: 0.9em;
+    }
+    .menu-layer ul {
+        padding: 10px 0px 0px 0px;
+        max-width: 280px;
+    }
+    .hamburger-menu-active {
+        transform: translateY(-80px);
     }
 }
 @media screen and (max-width:350px) {
@@ -442,5 +472,22 @@ nav {
     }
     .button-box button {
         font-size: 12px;
+    }
+    .menu-layer ul li {
+        font-size: 1.2em;
+        font-weight: 500;
+        padding: 5px;
+        cursor: pointer;
+    }
+    .menu-layer span {
+        font-weight: 700;
+        font-size: 1.5em;
+    }
+    .menu-layer ul {
+        padding: 10px 0px 0px 0px;
+        max-width: 200px;
+    }
+    .hamburger-menu-active {
+        transform: translateY(-60px);
     }
 }

@@ -8,6 +8,7 @@ function getValues(){
     console.log(chunks);
     return chunks;
 }
+
 function handleUserActivity(){
     arr = getValues();
 
@@ -19,6 +20,7 @@ function handleUserActivity(){
         printMessage("Result is: " + det.toPrecision(3));
     }
 }
+
 function printMessage(str){
 
     let txtBox = document.querySelector('.result');
@@ -27,6 +29,7 @@ function printMessage(str){
     setTimeout(() => txtBox.classList.remove("result-pre-animation"), 700)
     
 }
+
 function clearData(){
     printMessage("Insert data");
     const values = document.querySelectorAll('.value');
@@ -35,6 +38,7 @@ function clearData(){
             values[indx].classList.remove("invalid-value");
     }
 }
+
 function checkData(arr){
     const inputArr = Array.from(document.querySelectorAll('.value'));
     let flag = true;
@@ -52,6 +56,7 @@ function checkData(arr){
     if(!flag) return true;
     else return false;
 }
+
 function computeDet (arr){
     console.log(arr.length);
     let det = arr[0][0];
@@ -65,6 +70,7 @@ function computeDet (arr){
     }
     return det
 }
+
 function increaseSize(){
     let grid = document.getElementsByClassName("grid-container")[0];
     const size = parseInt(grid.dataset.num) + 1;
@@ -74,6 +80,7 @@ function increaseSize(){
     loadGrid(grid, size);
     
 }
+
 function decreaseSize(){
     let grid = document.getElementsByClassName("grid-container")[0];
     const size = parseInt(grid.dataset.num) - 1;
@@ -82,6 +89,7 @@ function decreaseSize(){
     grid.dataset.num = size;
     loadGrid(grid, size);
 }
+
 function loadGrid(grid, size){
     let gridHolder = document.querySelector('.grid-holder');
     let input = document.createElement("input");
@@ -96,37 +104,42 @@ function loadGrid(grid, size){
     for(let i = 0; i < size * size; ++i){
         grid.appendChild(input.cloneNode(1));
     }
-    //setTimeout(()=>{return;},700)
     setTimeout(() => gridHolder.classList.toggle("grid-pre-animation"), 500);
-    //gridHolder.classList.remove("grid-pre-animation");
 }
+
 function setWindowHeight() {
     const navbar = document.querySelector("nav");
     const navHeight = navbar.offsetHeight;
     let flexContainer = document.querySelector(".flex-container");
     flexContainer.style.height = `calc( 100vh - ${navHeight}px)`;
 }
+
 function windowOnResize() {
     window.onresize = setWindowHeight;
 }
+
 function windowOnLoad(){
     window.onload = setWindowHeight;
     hamburgerMenu();
 }
+
 windowOnLoad();
 windowOnResize();
+
 function hamburgerMenu(){
     const hamburger = document.getElementsByClassName("hamburger-menu")[0];
     const menuLayer = document.getElementsByClassName("menu-layer")[0];
+
     hamburger.addEventListener('click', () => {
         menuLayer.classList.toggle('menu-layer-active');
         hamburger.classList.toggle('hamburger-menu-active');
+
         hamburger.addEventListener('click', () => {
             menuLayer.classList.toggle('menu-layer-deactive');
             setTimeout(() => menuLayer.classList.toggle('menu-layer-deactive'),1000);
             
         });
-});
+    });
 }
 
 
