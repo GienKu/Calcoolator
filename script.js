@@ -2,7 +2,7 @@ function getValues(){
     const values = document.querySelectorAll('.value');
     const arr = Array.from(values).map(x => parseFloat(x.value));
     const size = Math.sqrt(arr.length);
-    for( var chunks = [], i = 0; i < arr.length; i+=size ){
+    for( var chunks = [], i = 0; i < arr.length; i += size ){
         chunks.push(arr.slice(i, i + size));
     }
     console.log(chunks);
@@ -16,7 +16,7 @@ function handleUserActivity(){
     }
     else{
         const det = computeDet(arr);
-        printMessage("Result is: "+ det.toPrecision(3));
+        printMessage("Result is: " + det.toPrecision(3));
     }
 }
 function printMessage(str){
@@ -24,7 +24,7 @@ function printMessage(str){
     let txtBox = document.querySelector('.result');
     txtBox.classList.add("result-pre-animation");
     txtBox.textContent = str;
-    setTimeout(() => txtBox.classList.remove("result-pre-animation"),700)
+    setTimeout(() => txtBox.classList.remove("result-pre-animation"), 700)
     
 }
 function clearData(){
@@ -39,13 +39,13 @@ function checkData(arr){
     const inputArr = Array.from(document.querySelectorAll('.value'));
     let flag = true;
     for( let [row, i] of arr.entries()){
-        for( let [col,j]  of i.entries()){
+        for( let [col, j]  of i.entries()){
             if(isNaN(j)){
                 flag = false;
-                inputArr[col+row*arr.length].classList.add("invalid-value");
+                inputArr[col + row * arr.length].classList.add("invalid-value");
             }
             else{
-                inputArr[col+row*arr.length].classList.remove("invalid-value");
+                inputArr[col + row * arr.length].classList.remove("invalid-value");
             }
         }
     }
@@ -68,7 +68,8 @@ function computeDet (arr){
 function increaseSize(){
     let grid = document.getElementsByClassName("grid-container")[0];
     const size = parseInt(grid.dataset.num) + 1;
-    if(size > 5)return;
+    if(size > 5)
+        return;
     grid.dataset.num = size;
     loadGrid(grid, size);
     
@@ -76,7 +77,8 @@ function increaseSize(){
 function decreaseSize(){
     let grid = document.getElementsByClassName("grid-container")[0];
     const size = parseInt(grid.dataset.num) - 1;
-    if(size < 2)return;
+    if(size < 2)
+        return;
     grid.dataset.num = size;
     loadGrid(grid, size);
 }
@@ -91,11 +93,11 @@ function loadGrid(grid, size){
     grid.style.gridTemplateRows = "repeat("+size+",30px)";
     grid.textContent="";
 
-    for(let i = 0; i < size*size; ++i){
+    for(let i = 0; i < size * size; ++i){
         grid.appendChild(input.cloneNode(1));
     }
     //setTimeout(()=>{return;},700)
-    setTimeout(() => gridHolder.classList.toggle("grid-pre-animation"),500);
+    setTimeout(() => gridHolder.classList.toggle("grid-pre-animation"), 500);
     //gridHolder.classList.remove("grid-pre-animation");
 }
 
