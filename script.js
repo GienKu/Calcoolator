@@ -100,4 +100,33 @@ function loadGrid(grid, size){
     setTimeout(() => gridHolder.classList.toggle("grid-pre-animation"), 500);
     //gridHolder.classList.remove("grid-pre-animation");
 }
+function setWindowHeight() {
+    const navbar = document.querySelector("nav");
+    const navHeight = navbar.offsetHeight;
+    let flexContainer = document.querySelector(".flex-container");
+    flexContainer.style.height = `calc( 100vh - ${navHeight}px)`;
+}
+function windowOnResize() {
+    window.onresize = setWindowHeight;
+}
+function windowOnLoad(){
+    window.onload = setWindowHeight;
+    hamburgerMenu();
+}
+windowOnLoad();
+windowOnResize();
+function hamburgerMenu(){
+    const hamburger = document.getElementsByClassName("hamburger-menu")[0];
+    const menuLayer = document.getElementsByClassName("menu-layer")[0];
+    hamburger.addEventListener('click', () => {
+        menuLayer.classList.toggle('menu-layer-active');
+        hamburger.classList.toggle('hamburger-menu-active');
+        hamburger.addEventListener('click', () => {
+            menuLayer.classList.toggle('menu-layer-deactive');
+            setTimeout(() => menuLayer.classList.toggle('menu-layer-deactive'),1000);
+            
+        });
+});
+}
+
 
