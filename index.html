@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     
-    <title>Nauka</title>
+    <title>Calcoolator</title>
     
 </head>
 <body>
-  <script src="script.js" defer></script>
-  <script src="animations.js" defer></script>
+  <script src="js/matrix.js" defer></script>
+  <script src="js/modules.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <script src="js/animations.js" defer></script>
 
   <nav>
     <div class="navbar">
@@ -37,16 +39,6 @@
       <div class="logo-arrow right-logo-arrow">&#62;</div>
     </div>
     <div class="menu-layer">
-      <div class="matrix-operations">
-        <span>Matrix operations</span>
-        <ul>
-          <li>&#62; Add</li>
-          <li>&#62; Substract</li>
-          <li>&#62; Multiply</li>
-          <li>&#62; Inverse</li>
-          <li>&#62; Transpose</li>
-        </ul>
-      </div>
       <div class="other-operations">
         <span>Calculators</span>
         <ul>
@@ -67,34 +59,58 @@
 
   
   <div class="flex-container">
-    <div class="grid-holder">
-      <h3>Determinant calculator</h3>
-      <div data-num="3" class="grid-container">
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
-        <input type="text" class="value"/>
+    <div class="grid-wrapper">
+      <div class="grid-holder">
+        <h4>Matrix A</h4>
+        <div data-num="3" class="grid-container">
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+          <input type="text" class="value input-1"/>
+        </div>
+        <div class="button-box">
+          <button type="button" onclick="singleMatrixOperation('.input-1')">Compute Det</button>
+          <button type="button" onclick="">Inverse</button>
+          <button type="button" onclick="">Transpose</button>
+          <button type="button" onclick="decreaseMatrixSize(0)">-</button>
+          <button type="button" onclick="clearData('.input-1')">Erase</button>
+          <button type="button" onclick="increaseMatrixSize(0)">+</button>
+        </div>
+      </div>
+      <div class="grid-holder">
+        <h4>Matrix B</h4>
+        <div data-num="3" class="grid-container">
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+          <input type="text" class="value input-2"/>
+        </div>
+        <div class="button-box">
+          <button type="button" onclick="singleMatrixOperation('.input-2','det')">Compute Det</button>
+          <button type="button" onclick="singleMatrixOperation('.input-2','inverse')">Inverse</button>
+          <button type="button" onclick="singleMatrixOperation('.input-2','transpose')">Transpose</button>
+          <button type="button" onclick="decreaseMatrixSize(1)">-</button>
+          <button type="button" onclick="clearData('.input-2')">Erase</button>
+          <button type="button" onclick="increaseMatrixSize(1)">+</button>
+        </div>
       </div>
     </div>
+  
 
     <div class="button-box">
-      <button type="button" onclick="decreaseSize()">
-        -
-      </button>
-      <button type="button" onclick="handleUserActivity()">
-        Compute Det
-      </button>
-      <button type="button" onclick="clearData()">
-        Erase
-      </button>
-      <button type="button" onclick="increaseSize()">
-        +
-      </button>
+      <button type="button" onclick="">Add</button>
+      <button type="button" onclick="">Substract</button>
+      <button type="button" onclick="">Multiply</button>
     </div>
     <div class="message-box">
       <p class="result">Insert data</p>
