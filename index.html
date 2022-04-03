@@ -42,11 +42,12 @@
       <div class="other-operations">
         <span>Calculators</span>
         <ul>
+          <li>&#62; Matrix calculator</li>
           <li>&#62; Draggable calculator</li>
           <li>&#62; Roots of the polynomial</li>
           <li>&#62; Lagrange Interpolation</li>
           <li>&#62; Approximation</li>
-          <li>&#62; Dariative</li>
+          <li>&#62; Deriative</li>
         </ul>
       </div>
     </div>
@@ -73,13 +74,13 @@
           <input type="text" class="value input-1"/>
           <input type="text" class="value input-1"/>
         </div>
-        <div class="button-box">
-          <button type="button" onclick="singleMatrixOperation('.input-1')">Compute Det</button>
-          <button type="button" onclick="">Inverse</button>
-          <button type="button" onclick="">Transpose</button>
-          <button type="button" onclick="decreaseMatrixSize(0)">-</button>
-          <button type="button" onclick="clearData('.input-1')">Erase</button>
-          <button type="button" onclick="increaseMatrixSize(0)">+</button>
+        <div class="button-box buttons-a">
+          <button type="button" id="but-a1">Compute Det</button>
+          <button type="button" id="but-a2">Inverse</button>
+          <button type="button" id="but-a3">Transpose</button>
+          <button type="button" id="but-a4">-</button>
+          <button type="button" id="but-a5">Erase</button>
+          <button type="button" id="but-a6">+</button>
         </div>
       </div>
       <div class="grid-holder">
@@ -95,25 +96,34 @@
           <input type="text" class="value input-2"/>
           <input type="text" class="value input-2"/>
         </div>
-        <div class="button-box">
-          <button type="button" onclick="singleMatrixOperation('.input-2','det')">Compute Det</button>
-          <button type="button" onclick="singleMatrixOperation('.input-2','inverse')">Inverse</button>
-          <button type="button" onclick="singleMatrixOperation('.input-2','transpose')">Transpose</button>
-          <button type="button" onclick="decreaseMatrixSize(1)">-</button>
-          <button type="button" onclick="clearData('.input-2')">Erase</button>
-          <button type="button" onclick="increaseMatrixSize(1)">+</button>
+        <div class="button-box buttons-b">
+          <button type="button" id="but-b1">Compute Det</button>
+          <button type="button" id="but-b2">Inverse</button>
+          <button type="button" id="but-b3">Transpose</button>
+          <button type="button" id="but-b4">-</button>
+          <button type="button" id="but-b5">Erase</button>
+          <button type="button" id="but-b6">+</button>
         </div>
       </div>
     </div>
   
-
-    <div class="button-box">
-      <button type="button" onclick="">Add</button>
-      <button type="button" onclick="">Substract</button>
-      <button type="button" onclick="">Multiply</button>
+    <div class="button-box button-op">
+      <button type="button" id="but-add">Add</button>
+      <button type="button" id="but-substract">Substract</button>
+      <button type="button" id="but-multiply">Multiply</button>
     </div>
     <div class="message-box">
       <p class="result">Insert data</p>
+    </div>
+    <div class="result-matrix">
+
+      <div class="result-matrix-values">
+        <span>1</span>
+      </div>
+      <div class="button-box">
+        <button id="but-copy">Copy values to matrix</button>
+        <button id="but-go-back">Go back</button>
+      </div>
     </div>
   </div>
   <div class="bubbles-box">

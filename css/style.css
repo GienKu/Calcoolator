@@ -328,7 +328,7 @@ nav {
 }
 .message-box{
     padding: 10px;
-    width: 200px;
+    width: 350px;
     background-color:rgba(255,255,255,0.15) ;
     border:1px solid rgba(255,255,255,0.36);
     text-align: center;
@@ -364,6 +364,7 @@ nav {
         opacity: 1;
     }
 }
+/*-------------BUBBLE ANIMATION START ------------*/
 .bubbles-box {
     position: absolute;
     bottom:0;
@@ -435,6 +436,47 @@ nav {
         transform: translate(-200px, -50vh) scale(10);
     }
 }
+.result-matrix {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    opacity: 0;
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: all 2s ease-in;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.result-matrix-active {
+    display: flex;
+    opacity: 1;
+    animation: layerActive 2s;
+}
+.result-matrix-deactive {
+    display: flex;
+    animation: layerDeactive 1s;
+}
+.result-matrix-values {
+    display: grid;
+    background-color: rgba(255,255,255,0.2);
+    padding: 15px 10px 25px 10px;
+    grid-gap:5px;
+}
+
+.result-value {
+    background-color:rgba(255,255,255,0.15) ;
+    border:1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    padding-top: 7px;
+}
+/*-------------BUBBLE ANIMATION END ------------*/
 @media screen and (max-width:768px) {
     .menu-layer ul {
         padding: 10px 0px 0px 0px;
@@ -446,8 +488,15 @@ nav {
 }
 @media screen and (max-width:584px) {
     .menu-layer {
-        align-items: flex-end;
+        align-items: center;
     }
+    .menu-layer .other-operations {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 @media screen and (max-width:480px) {
     .logo-letter {

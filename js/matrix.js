@@ -15,10 +15,16 @@ class Matrix {
         return det
     }
     addToMatrix(matrixTwo){
-
+        for(let i = 0; i < this.matrix.length; ++i)
+            for(let j = 0; j < this.matrix.length; ++j)
+                this.matrix[i][j] += matrixTwo[i][j];
+            return this;
     }
     substractFromMatrix(matrixTwo){
-
+        for(let i = 0; i < this.matrix.length; ++i)
+            for(let j = 0; j < this.matrix.length; ++j)
+                this.matrix[i][j] -= matrixTwo[i][j];
+        return this;
     }
     multiplyByMatrix(matrixTwo){
 
@@ -27,6 +33,15 @@ class Matrix {
 
     }
     transposeMatrix(){
+        const tempMatrix = JSON.parse(JSON.stringify(this));
+        for(let i = 0; i < this.matrix.length; ++i){
+            for(let j = 0; j < this.matrix.length; ++j) {
+                this.matrix[j][i] = tempMatrix.matrix[i][j];
+            }
+        }
+        return this;
+    }
+    createExtendedMatrix() {
 
     }
 }
