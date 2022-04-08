@@ -10,6 +10,7 @@ body, html {
     background: linear-gradient(135deg,#e66465, #9198e5);
     background-attachment: fixed;
     font-size: 16px;
+    overflow-x: hidden;
 }
 /*-----------------NAV START ----------------*/
 nav {
@@ -473,6 +474,7 @@ nav {
     background-color:rgba(255,255,255,0.15) ;
     border:1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.8);
+    font-size: 14px;
     text-align: center;
     padding-top: 7px;
 }

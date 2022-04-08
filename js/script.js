@@ -77,15 +77,22 @@ function singleMatrixOperation(input, operation){
         switch(operation){
             case "det":
                 const det = matrixOne.computeMatrixDet();
-                printMessage("Result is: " + det.toPrecision(3));
+                printMessage("Result is: " + parseFloat(det.toFixed(3)));
                 break;
             case "inverse":
-                console.log("inverse");
+                if(matrixOne.computeMatrixDet() != 0){
+                    console.log("inverse");
+                    matrixOne.inverseMatrix();
+                    createResultMatrixBox(matrixOne);
+                    console.log(matrixOne.matrix);
+                }
+                else{
+                    printMessage("Determinant is equal to 0 - inversed matrix doesn't exist!")
+                }
                 break;
             case "transpose":
                 matrixOne.transposeMatrix();
                 createResultMatrixBox(matrixOne);
-                console.log(matrixOne.matrix);
                 break;
         }
     }
@@ -110,14 +117,19 @@ function doubleMatrixOperations(inputOne, inputTwo, operation) {
                 break;
             case "substract":
                 if(matrixOne.matrix.length != matrixTwo.matrix.length)
-                    printMessage("Cannot substract matrix A from B - different sizes")
+                    printMessage("Cannot substract matrix B from A - different sizes")
                 else{
                     matrixOne.substractFromMatrix(matrixTwo.matrix);
                     createResultMatrixBox(matrixOne);
                 }
                 break;
             case "multiply":
-                console.log("multiply");
+                if(matrixOne.matrix.length != matrixTwo.matrix.length)
+                    printMessage("Cannot multiply matrices A and B - different sizes")
+                else{
+                    matrixOne.multiplyByMatrix(matrixTwo);
+                    createResultMatrixBox(matrixOne);
+            }
                 break;
         }
     }
@@ -184,10 +196,10 @@ function goBackFromResult() {
 
 function writeValuesToResultBox(matrix){
     const resultArr = Array.from(document.querySelectorAll('.result-value'));
-    console.log(resultArr);
+    
     for( let [row, i] of matrix.matrix.entries()){
         for( let [col, j]  of i.entries()){
-                resultArr[col + row * matrix.matrix.length].textContent = matrix.matrix[row][col];
+                resultArr[col + row * matrix.matrix.length].textContent = parseFloat(matrix.matrix[row][col].toFixed(3));
         }
     }
 }
