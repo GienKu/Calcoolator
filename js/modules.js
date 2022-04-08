@@ -1,6 +1,7 @@
 function switchModule() {
 
 }
+//todo
  function matrixModule(){
     const htmlModule = 
     `
@@ -18,7 +19,6 @@ function increaseMatrixSize(num){
 }
 
 function decreaseMatrixSize(num){
-    console.log(num);
     let grid = document.getElementsByClassName("grid-container")[num];
     const size = parseInt(grid.dataset.num) - 1;
 

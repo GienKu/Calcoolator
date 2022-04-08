@@ -1,37 +1,28 @@
-function windowOnResize() {
-    window.onresize = setWindowHeight;
-}
-
 function windowOnLoad(){
-    window.onload = setWindowHeight;
-    hamburgerMenu();
     buttonEventListeners();
-    windowOnResize();
 }
 windowOnLoad();
 
-
-function setWindowHeight() {
-    const navbar = document.querySelector("nav");
-    const navHeight = navbar.offsetHeight;
-    let flexContainer = document.querySelector(".flex-container");
-    flexContainer.style.height = `calc( 100vh - ${navHeight}px)`;
-}
-
-function hamburgerMenu(){
+function menuDeactive(){
     const hamburger = document.getElementsByClassName("hamburger-menu")[0];
     const menuLayer = document.getElementsByClassName("menu-layer")[0];
+    const pageWrapper = document.querySelector(".page-wrapper");
+    
+    menuLayer.classList.toggle('menu-layer-deactive');
+    pageWrapper.classList.remove("disabled-scroll");
+    setTimeout(() => menuLayer.classList.toggle('menu-layer-deactive'), 1000);
+    hamburger.removeEventListener('click', menuDeactive);
+}
 
-    hamburger.addEventListener('click', () => {
-        menuLayer.classList.toggle('menu-layer-active');
-        hamburger.classList.toggle('hamburger-menu-active');
+function menuActive() {
+    const hamburger = document.getElementsByClassName("hamburger-menu")[0];
+    const menuLayer = document.getElementsByClassName("menu-layer")[0];
+    const pageWrapper = document.querySelector(".page-wrapper");
 
-        hamburger.addEventListener('click', () => {
-            menuLayer.classList.toggle('menu-layer-deactive');
-            setTimeout(() => menuLayer.classList.toggle('menu-layer-deactive'),1000);
-            
-        });
-    });
+    menuLayer.classList.toggle('menu-layer-active');
+    hamburger.classList.toggle('hamburger-menu-active');
+    pageWrapper.classList.add("disabled-scroll");
+    hamburger.addEventListener('click', menuDeactive);
 }
 
 function buttonEventListeners(){
@@ -56,15 +47,19 @@ function buttonEventListeners(){
 
     //document.getElementById("but-copy").addEventListener('click', () => copyValuesFromResult());
     document.getElementById("but-go-back").addEventListener('click', () => goBackFromResult());
+    //menu/hamburger
+    document.getElementsByClassName("hamburger-menu")[0].addEventListener('click', menuActive);
 }
 
 function getValues(input){
     const values = document.querySelectorAll(input);
     const arr = Array.from(values).map(x => parseFloat(x.value));
     const size = Math.sqrt(arr.length);
+
     for( var chunks = [], i = 0; i < arr.length; i += size ){
         chunks.push(arr.slice(i, i + size));
     }
+
     return chunks;
 }
 
@@ -79,21 +74,24 @@ function singleMatrixOperation(input, operation){
                 const det = matrixOne.computeMatrixDet();
                 printMessage("Result is: " + parseFloat(det.toFixed(3)));
                 break;
+
             case "inverse":
                 if(matrixOne.computeMatrixDet() != 0){
-                    console.log("inverse");
                     matrixOne.inverseMatrix();
                     createResultMatrixBox(matrixOne);
                     console.log(matrixOne.matrix);
+
                 }
                 else{
                     printMessage("Determinant is equal to 0 - inversed matrix doesn't exist!")
                 }
                 break;
+
             case "transpose":
                 matrixOne.transposeMatrix();
                 createResultMatrixBox(matrixOne);
                 break;
+
         }
     }
 }
@@ -115,6 +113,7 @@ function doubleMatrixOperations(inputOne, inputTwo, operation) {
                     createResultMatrixBox(matrixOne);
                 }
                 break;
+
             case "substract":
                 if(matrixOne.matrix.length != matrixTwo.matrix.length)
                     printMessage("Cannot substract matrix B from A - different sizes")
@@ -123,14 +122,16 @@ function doubleMatrixOperations(inputOne, inputTwo, operation) {
                     createResultMatrixBox(matrixOne);
                 }
                 break;
+
             case "multiply":
                 if(matrixOne.matrix.length != matrixTwo.matrix.length)
                     printMessage("Cannot multiply matrices A and B - different sizes")
                 else{
                     matrixOne.multiplyByMatrix(matrixTwo);
                     createResultMatrixBox(matrixOne);
-            }
+                }
                 break;
+
         }
     }
 }
@@ -145,6 +146,7 @@ function printMessage(str){
 function clearData(input){
     printMessage("Insert data");
     const values = document.querySelectorAll(input);
+
     for( let [indx,j] of values.entries()){
             j.value = "";
             values[indx].classList.remove("invalid-value");
@@ -154,6 +156,7 @@ function clearData(input){
 function checkData(matrix, input){
     const inputArr = Array.from(document.querySelectorAll(input));
     let flag = true;
+
     for( let [row, i] of matrix.entries()){
         for( let [col, j]  of i.entries()){
             if(isNaN(j)){

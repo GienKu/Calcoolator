@@ -16,14 +16,15 @@ class Matrix {
             }
             det *= copiedMatrix.matrix[s+1][s+1];
         }
-        return det
+        return det;
     }
 
     addToMatrix(matrixTwo){
         for(let i = 0; i < this.nSize; ++i)
             for(let j = 0; j < this.mSize; ++j)
                 this.matrix[i][j] += matrixTwo[i][j];
-            return this;
+
+        return this;
     }
 
     substractFromMatrix(matrixTwo){
@@ -36,11 +37,13 @@ class Matrix {
     multiplyByMatrix(matrixTwo){
         const tempMatrix = JSON.parse(JSON.stringify(this));
 
-        for(let i = 0; i < this.nSize; ++i)
+        for(let i = 0; i < this.nSize; ++i){
             for(let j = 0; j < matrixTwo.nSize; ++j){
                 this.matrix[i][j] = 0;
-                for( let k = 0; k < this.mSize; ++k)
+                for( let k = 0; k < this.mSize; ++k){
                     this.matrix[i][j] += tempMatrix.matrix[i][k] * matrixTwo.matrix[k][j];
+                }
+            }
         }
         return this;
     }
@@ -49,6 +52,7 @@ class Matrix {
         this.convertToExtendedMatrix();
         let c;
         let d;
+
         for(let s = 0; s < this.nSize; ++s){
             c = this.matrix[s][s];
             this.matrix[s][s] -= 1;
@@ -59,10 +63,12 @@ class Matrix {
                 }
             }
         }
+
         console.log(this);
         let inversedMatrix = [];
         let chunk = [];
         this.mSize /= 2;
+
         for(let i = 0; i < this.nSize; ++i){
             for(let j = 0; j < this.mSize; ++j) {
                 chunk.push(this.matrix[i][j + this.nSize]);
@@ -70,14 +76,15 @@ class Matrix {
             inversedMatrix.push(chunk);
             chunk = [];
         }
+
         this.matrix = inversedMatrix;
-        console.log(this);
         return this;
     }
 
     transposeMatrix(){
         let transposedMatrix = [];
         let chunk = [];
+
         for(let i = 0; i < this.nSize; ++i){
             for(let j = 0; j < this.mSize; ++j) {
                 chunk.push(this.matrix[j][i]);
@@ -91,15 +98,16 @@ class Matrix {
 
     convertToExtendedMatrix(){
         for(let i = 0; i < this.nSize; ++i){
+
             for(let j = 0; j < this.mSize; ++j) {
-                    if( i == j)
-                        this.matrix[i].push(1);
-                    else
-                        this.matrix[i].push(0);
-                }
+                if( i == j)
+                    this.matrix[i].push(1);
+                else
+                    this.matrix[i].push(0);
             }
-            this.mSize *= 2;
-            return this;
+        }
+        this.mSize *= 2;
+        return this;
     }
 
 }

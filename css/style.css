@@ -10,7 +10,15 @@ body, html {
     background: linear-gradient(135deg,#e66465, #9198e5);
     background-attachment: fixed;
     font-size: 16px;
+    height: 100%;
+}
+.disabled-scroll {
+    overflow-y: hidden;
+}
+.page-wrapper {
     overflow-x: hidden;
+    position: relative;
+    height: 100%;
 }
 /*-----------------NAV START ----------------*/
 nav {
@@ -92,41 +100,41 @@ nav {
  animation: letterWave 1s 50ms linear;
 }
 .logo-letter-2 {
-    animation: letterWave 1s 100ms linear;
+    animation: letterWave 1s 150ms linear;
 }
 .logo-letter-3 {
-    animation: letterWave 1s 150ms linear;
+    animation: letterWave 1s 250ms linear;
 }
 .logo-letter-4 {
     color:#91AAff;
-    animation: letterWave 1s 200ms linear;
+    animation: letterWave 1s 350ms linear;
 }
 .logo-letter-5 {
     color:#91AAff;
-    animation: letterWave 1s 250ms linear;
+    animation: letterWave 1s 450ms linear;
 }
 .logo-letter-6 {
     color:#91AAff;
-    animation: letterWave 1s 300ms linear ;
+    animation: letterWave 1s 550ms linear ;
 }
 .logo-letter-7 {
     color:#91AAff;
-    animation: letterWave 1s 350ms linear ;
+    animation: letterWave 1s 650ms linear ;
 }
 .logo-letter-8 {
-    animation: letterWave 1s 400ms linear ;
+    animation: letterWave 1s 750ms linear ;
     
 }
 .logo-letter-9 {
-    animation: letterWave 1s 450ms linear ;
+    animation: letterWave 1s 850ms linear ;
     
 }
 .logo-letter-10 {
-    animation: letterWave 1s 500ms linear ;
+    animation: letterWave 1s 950ms linear ;
     
 }
 .logo-letter-11 {
-    animation: letterWave 1s 550ms linear ;
+    animation: letterWave 1s 1050ms linear ;
     
 }
 @keyframes letterWave {
@@ -141,8 +149,10 @@ nav {
     position: absolute;
     top:0;
     left:0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    height: 100vh;
+    height: 114vh;
     display: none;
     justify-content: center;
     align-items: center;
@@ -153,7 +163,7 @@ nav {
     color:#636aca;
     backdrop-filter: blur(10px);
     z-index: 4;
-    transition: all 2s ease-in;
+    transition: all 1s ease-in;
 }
 
 .menu-layer-active {
@@ -163,7 +173,7 @@ nav {
 }
 .menu-layer-deactive {
     display: flex;
-    animation: layerDeactive 1s;
+    
 }
 @keyframes layerDeactive {
     0%{
@@ -257,10 +267,9 @@ nav {
 .flex-container {
     display: flex;
     width: 100%;
-    
     flex-direction: column;
-
     align-items: center;
+    margin-bottom: 20px;
 }
 .grid-wrapper {
     display: flex;
@@ -364,6 +373,12 @@ nav {
         filter:blur(8px);
         opacity: 1;
     }
+}
+.footer {
+    display:flex;
+    justify-content: center;
+    padding:15px;
+    color:rgba(255,255,255,0.5);
 }
 /*-------------BUBBLE ANIMATION START ------------*/
 .bubbles-box {
@@ -484,9 +499,7 @@ nav {
         padding: 10px 0px 0px 0px;
         max-width: 280px;
     }
-    .hamburger-menu-active {
-        transform: translateY(-100px);
-    }
+
 }
 @media screen and (max-width:584px) {
     .menu-layer {
@@ -514,9 +527,7 @@ nav {
         padding: 10px 0px 0px 0px;
         max-width: 280px;
     }
-    .hamburger-menu-active {
-        transform: translateY(-80px);
-    }
+
 }
 @media screen and (max-width:350px) {
     .logo-letter {
@@ -545,7 +556,7 @@ nav {
         padding: 10px 0px 0px 0px;
         max-width: 200px;
     }
-    .hamburger-menu-active {
-        transform: translateY(-60px);
+    .message-box{
+        width: 250px;
     }
 }

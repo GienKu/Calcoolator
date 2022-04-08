@@ -10,124 +10,127 @@
     
 </head>
 <body>
-  <script src="js/matrix.js" defer></script>
-  <script src="js/modules.js" defer></script>
-  <script src="js/script.js" defer></script>
-  <script src="js/animations.js" defer></script>
+  <div class="page-wrapper">
+    <script src="js/matrix.js" defer></script>
+    <script src="js/modules.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/animations.js" defer></script>
 
-  <nav>
-    <div class="navbar">
-      <div class="logo-arrow left-logo-arrow">&#60;</div>
-      <div class="logo-desc-container">
-        <div class="nav-logo">
-          <span class="logo-letter logo-letter-1">C</span>
-          <span class="logo-letter logo-letter-2">a</span>
-          <span class="logo-letter logo-letter-3">l</span>
-          <span class="logo-letter logo-letter-4">c</span>
-          <span class="logo-letter logo-letter-5">o</span>
-          <span class="logo-letter logo-letter-6">o</span>
-          <span class="logo-letter logo-letter-7">l</span>
-          <span class="logo-letter logo-letter-8">a</span>
-          <span class="logo-letter logo-letter-9">t</span>
-          <span class="logo-letter logo-letter-10">o</span>
-          <span class="logo-letter logo-letter-11">r</span>
+    <nav>
+      <div class="navbar">
+        <div class="logo-arrow left-logo-arrow">&#60;</div>
+        <div class="logo-desc-container">
+          <div class="nav-logo">
+            <span class="logo-letter logo-letter-1">C</span>
+            <span class="logo-letter logo-letter-2">a</span>
+            <span class="logo-letter logo-letter-3">l</span>
+            <span class="logo-letter logo-letter-4">c</span>
+            <span class="logo-letter logo-letter-5">o</span>
+            <span class="logo-letter logo-letter-6">o</span>
+            <span class="logo-letter logo-letter-7">l</span>
+            <span class="logo-letter logo-letter-8">a</span>
+            <span class="logo-letter logo-letter-9">t</span>
+            <span class="logo-letter logo-letter-10">o</span>
+            <span class="logo-letter logo-letter-11">r</span>
+          </div>
+          <div class="nav-desc">
+            ...propably the <span>coolest</span> calculator ever!
+          </div>
         </div>
-        <div class="nav-desc">
-          ...propably the <span>coolest</span> calculator ever!
+        <div class="logo-arrow right-logo-arrow">&#62;</div>
+      </div>
+      <div class="menu-layer">
+        <div class="other-operations">
+          <span>Calculators</span>
+          <ul>
+            <li>&#62; Matrix calculator</li>
+            <li>&#62; Draggable calculator</li>
+            <li>&#62; Roots of the polynomial</li>
+            <li>&#62; Lagrange Interpolation</li>
+            <li>&#62; Approximation</li>
+            <li>&#62; Deriative</li>
+          </ul>
         </div>
       </div>
-      <div class="logo-arrow right-logo-arrow">&#62;</div>
+      <div class="hamburger-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
     </div>
-    <div class="menu-layer">
-      <div class="other-operations">
-        <span>Calculators</span>
-        <ul>
-          <li>&#62; Matrix calculator</li>
-          <li>&#62; Draggable calculator</li>
-          <li>&#62; Roots of the polynomial</li>
-          <li>&#62; Lagrange Interpolation</li>
-          <li>&#62; Approximation</li>
-          <li>&#62; Deriative</li>
-        </ul>
-      </div>
-    </div>
-    <div class="hamburger-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-  </div>
-  </nav>
+    </nav>
 
-  
-  <div class="flex-container">
-    <div class="grid-wrapper">
-      <div class="grid-holder">
-        <h4>Matrix A</h4>
-        <div data-num="3" class="grid-container">
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
-          <input type="text" class="value input-1"/>
+    
+    <div class="flex-container">
+      <div class="grid-wrapper">
+        <div class="grid-holder">
+          <h4>Matrix A</h4>
+          <div data-num="3" class="grid-container">
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+            <input type="text" class="value input-1"/>
+          </div>
+          <div class="button-box buttons-a">
+            <button type="button" id="but-a4">-</button>
+            <button type="button" id="but-a5">Erase</button>
+            <button type="button" id="but-a6">+</button>
+            <button type="button" id="but-a1">Compute Det</button>
+            <button type="button" id="but-a2">Inverse</button>
+            <button type="button" id="but-a3">Transpose</button>
+          </div>
         </div>
-        <div class="button-box buttons-a">
-          <button type="button" id="but-a4">-</button>
-          <button type="button" id="but-a5">Erase</button>
-          <button type="button" id="but-a6">+</button>
-          <button type="button" id="but-a1">Compute Det</button>
-          <button type="button" id="but-a2">Inverse</button>
-          <button type="button" id="but-a3">Transpose</button>
+        <div class="grid-holder">
+          <h4>Matrix B</h4>
+          <div data-num="3" class="grid-container">
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+            <input type="text" class="value input-2"/>
+          </div>
+          <div class="button-box buttons-b">
+            <button type="button" id="but-b4">-</button>
+            <button type="button" id="but-b5">Erase</button>
+            <button type="button" id="but-b6">+</button>
+            <button type="button" id="but-b1">Compute Det</button>
+            <button type="button" id="but-b2">Inverse</button>
+            <button type="button" id="but-b3">Transpose</button>
+          </div>
         </div>
       </div>
-      <div class="grid-holder">
-        <h4>Matrix B</h4>
-        <div data-num="3" class="grid-container">
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-          <input type="text" class="value input-2"/>
-        </div>
-        <div class="button-box buttons-b">
-          <button type="button" id="but-b4">-</button>
-          <button type="button" id="but-b5">Erase</button>
-          <button type="button" id="but-b6">+</button>
-          <button type="button" id="but-b1">Compute Det</button>
-          <button type="button" id="but-b2">Inverse</button>
-          <button type="button" id="but-b3">Transpose</button>
-        </div>
+    
+      <div class="button-box button-op">
+        <button type="button" id="but-add">Add</button>
+        <button type="button" id="but-substract">Substract</button>
+        <button type="button" id="but-multiply">Multiply</button>
       </div>
-    </div>
-  
-    <div class="button-box button-op">
-      <button type="button" id="but-add">Add</button>
-      <button type="button" id="but-substract">Substract</button>
-      <button type="button" id="but-multiply">Multiply</button>
-    </div>
-    <div class="message-box">
-      <p class="result">Insert data</p>
-    </div>
-    <div class="result-matrix">
+      <div class="message-box">
+        <p class="result">Insert data</p>
+      </div>
+      <div class="result-matrix">
 
-      <div class="result-matrix-values">
-        <span>1</span>
-      </div>
-      <div class="button-box">
-        <button id="but-copy">Copy values to matrix</button>
-        <button id="but-go-back">Go back</button>
+        <div class="result-matrix-values">
+          <span>1</span>
+        </div>
+        <div class="button-box">
+          <button id="but-copy">Copy values to matrix</button>
+          <button id="but-go-back">Go back</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="bubbles-box">
+    <div class="bubbles-box">
 
+    </div>
+    <div class="footer">All rights reserved &copy; 2022 </div>
   </div>
 </body>
 </html>
