@@ -45,7 +45,8 @@ function buttonEventListeners(){
     document.getElementById("but-substract").addEventListener('click', () => doubleMatrixOperations('.input-1', '.input-2', 'substract'));
     document.getElementById("but-multiply").addEventListener('click', () => doubleMatrixOperations('.input-1', '.input-2', 'multiply'));
 
-    //document.getElementById("but-copy").addEventListener('click', () => copyValuesFromResult());
+    document.getElementById("but-copy-a").addEventListener('click', () => copyValuesFromResult("a"));
+    document.getElementById("but-copy-b").addEventListener('click', () => copyValuesFromResult("b"));
     document.getElementById("but-go-back").addEventListener('click', () => goBackFromResult());
     //menu/hamburger
     document.getElementsByClassName("hamburger-menu")[0].addEventListener('click', menuActive);
@@ -65,7 +66,8 @@ function getValues(input){
 
 function singleMatrixOperation(input, operation){
     matrixOne = new Matrix(getValues(input));
-    if(checkData(matrixOne.matrix, input)){
+    
+    if(checkData(matrixOne, input)){
         printMessage("Please enter correct data!");
     }
     else{
@@ -78,9 +80,9 @@ function singleMatrixOperation(input, operation){
             case "inverse":
                 if(matrixOne.computeMatrixDet() != 0){
                     matrixOne.inverseMatrix();
+                    sessionStorage.setItem("matrixOne", JSON.stringify(matrixOne));
                     createResultMatrixBox(matrixOne);
                     console.log(matrixOne.matrix);
-
                 }
                 else{
                     printMessage("Determinant is equal to 0 - inversed matrix doesn't exist!")
@@ -89,6 +91,7 @@ function singleMatrixOperation(input, operation){
 
             case "transpose":
                 matrixOne.transposeMatrix();
+                sessionStorage.setItem("matrixOne", JSON.stringify(matrixOne));
                 createResultMatrixBox(matrixOne);
                 break;
 
@@ -100,34 +103,37 @@ function doubleMatrixOperations(inputOne, inputTwo, operation) {
     matrixOne = new Matrix(getValues(inputOne));
     matrixTwo = new Matrix(getValues(inputTwo));
     
-    if(checkData(matrixOne.matrix, inputOne) || checkData(matrixTwo.matrix, inputTwo)){
+    if(checkData(matrixOne, inputOne) || checkData(matrixTwo, inputTwo)){
         printMessage("Please enter correct data!");
     }
     else{
         switch(operation){
             case "add":
-                if(matrixOne.matrix.length != matrixTwo.matrix.length)
+                if(matrixOne.nSize != matrixTwo.nSize || matrixOne.mSize != matrixTwo.mSize)
                     printMessage("Cannot add matrix A to B - different sizes")
                 else{
                     matrixOne.addToMatrix(matrixTwo.matrix);
+                    sessionStorage.setItem("matrixOne", JSON.stringify(matrixOne));
                     createResultMatrixBox(matrixOne);
                 }
                 break;
 
             case "substract":
-                if(matrixOne.matrix.length != matrixTwo.matrix.length)
+                if(matrixOne.nSize != matrixTwo.nSize || matrixOne.mSize != matrixTwo.mSize)
                     printMessage("Cannot substract matrix B from A - different sizes")
                 else{
                     matrixOne.substractFromMatrix(matrixTwo.matrix);
+                    sessionStorage.setItem("matrixOne", JSON.stringify(matrixOne));
                     createResultMatrixBox(matrixOne);
                 }
                 break;
 
             case "multiply":
-                if(matrixOne.matrix.length != matrixTwo.matrix.length)
+                if(matrixOne.mSize != matrixTwo.nSize)
                     printMessage("Cannot multiply matrices A and B - different sizes")
                 else{
                     matrixOne.multiplyByMatrix(matrixTwo);
+                    sessionStorage.setItem("matrixOne", JSON.stringify(matrixOne));
                     createResultMatrixBox(matrixOne);
                 }
                 break;
@@ -157,14 +163,14 @@ function checkData(matrix, input){
     const inputArr = Array.from(document.querySelectorAll(input));
     let flag = true;
 
-    for( let [row, i] of matrix.entries()){
+    for( let [row, i] of matrix.matrix.entries()){
         for( let [col, j]  of i.entries()){
             if(isNaN(j)){
                 flag = false;
-                inputArr[col + row * matrix.length].classList.add("invalid-value");
+                inputArr[col + row * matrix.nSize].classList.add("invalid-value");
             }
             else{
-                inputArr[col + row * matrix.length].classList.remove("invalid-value");
+                inputArr[col + row * matrix.nSize].classList.remove("invalid-value");
             }
         }
     }
@@ -174,17 +180,16 @@ function checkData(matrix, input){
 
 function createResultMatrixBox(matrix){
     const resultBox = document.querySelector(".result-matrix-values");
-    const size = matrix.matrix.length;
     let resultBoxHolder = document.querySelector(".result-matrix");
     let resultValue = document.createElement("span");
 
-    resultBoxHolder.classList.toggle("result-matrix-active");
     resultValue.classList.add("result-value");
-    resultBox.style.gridTemplateColumns = "repeat(" + size + ",50px)";
-    resultBox.style.gridTemplateRows = "repeat(" + size + ",30px)";
+    resultBoxHolder.classList.toggle("result-matrix-active");
+    resultBox.style.gridTemplateColumns = "repeat(" + matrix.mSize + ",50px)";
+    resultBox.style.gridTemplateRows = "repeat(" + matrix.nSize + ",30px)";
     resultBox.textContent = "";
 
-    for( let i = 0; i < size * size; ++i){
+    for( let i = 0; i < matrix.nSize * matrix.mSize; ++i){
         resultBox.appendChild(resultValue.cloneNode());
     } 
     writeValuesToResultBox(matrix);
@@ -202,10 +207,21 @@ function writeValuesToResultBox(matrix){
     
     for( let [row, i] of matrix.matrix.entries()){
         for( let [col, j]  of i.entries()){
-                resultArr[col + row * matrix.matrix.length].textContent = parseFloat(matrix.matrix[row][col].toFixed(3));
+                resultArr[col + row * matrix.nSize].textContent = parseFloat(matrix.matrix[row][col].toFixed(3));
         }
     }
 }
-function copyValuesFromResult() {
+function copyValuesFromResult(target) {
+    matrix = JSON.parse(sessionStorage.getItem("matrixOne"));
+    if(target === "a")
+        matrixGrid = Array.from(document.querySelectorAll(".grid-container")[0].children);
+    else
+        matrixGrid = Array.from(document.querySelectorAll(".grid-container")[1].children);
 
+    for( let [row, i] of matrix.matrix.entries()){
+        for( let [col, j]  of i.entries()){
+                matrixGrid[col + row * matrix.nSize].value = parseFloat(matrix.matrix[row][col].toFixed(3));
+        }
+    }
+    goBackFromResult();
 }
