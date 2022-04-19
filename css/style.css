@@ -162,7 +162,7 @@ nav {
     opacity: 0;
     color:#636aca;
     backdrop-filter: blur(10px);
-    z-index: 4;
+    z-index: 9;
     transition: all 1s ease-in;
 }
 
@@ -228,7 +228,7 @@ nav {
     flex-direction: column;
     justify-content: space-evenly;
     cursor: pointer;
-    z-index: 5;
+    z-index: 9;
     transition: all 0.5s ease;
 }
 .hamburger-menu .bar {
@@ -380,6 +380,86 @@ nav {
     padding:15px;
     color:rgba(255,255,255,0.5);
 }
+/*-------------CALCULATOR START---------------*/
+.calculatorHolder{
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.1);
+    padding: 2.5px;
+    border-radius: 5px;
+    backdrop-filter: blur(10px);
+    color: white;
+    z-index: 5;
+}
+.calc-active {
+    display: flex;
+}
+.calc-bar{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 15px;
+    background-color:rgba(255,255,255,0.4);
+    text-align: left;
+}
+
+.calc-exit {
+    width: 15px;
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.4);
+    padding: 0;
+    color: #636aca;
+}
+
+.calc-exit:hover{
+    background-color: rgba(255,255,255,0.5);
+}
+
+.calc-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: end;
+    margin-bottom: 2.5px;
+    margin-top: 2.5px;
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,0.3);
+    width: 100%;
+    background-color: rgba(255,255,255,0.3);
+    text-align: right;
+}
+.calc-results span:nth-child(1) {
+    font-size: 12px;
+}
+.grid-calc-buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 40px);
+    grid-template-rows: repeat(5, 40px);
+    grid-gap: 3px;
+}
+
+.grid-calc-buttons > button {
+    background-color: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    outline: none;
+    color: white;
+}
+
+.grid-calc-buttons > button:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+
+.calc-but-2 {
+    grid-column: span 2;
+}
+/*-------------CALCULATOR END---------------*/
 /*-------------BUBBLE ANIMATION START ------------*/
 .bubbles-box {
     position: absolute;
@@ -464,7 +544,7 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 5;
+    z-index: 10;
     transition: all 2s ease-in;
     background-color: rgba(255,255,255,0.2);
 }

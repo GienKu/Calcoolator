@@ -50,6 +50,7 @@ function buttonEventListeners(){
     document.getElementById("but-go-back").addEventListener('click', () => goBackFromResult());
     //menu/hamburger
     document.getElementsByClassName("hamburger-menu")[0].addEventListener('click', menuActive);
+    document.getElementById("but-drag-calc").addEventListener('click', () => draggableCalculator());
 }
 
 function getValues(input){
